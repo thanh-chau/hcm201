@@ -1,0 +1,247 @@
+[
+  {
+    "id": 1,
+    "type": "hcm-independence",
+    "question": "Theo Hồ Chí Minh, độc lập và tự do là gì đối với mỗi dân tộc?",
+    "answers": ["Quyền có thể trao đổi", "Quyền thiêng liêng, bất khả xâm phạm", "Quyền do các nước lớn quyết định", "Quyền chỉ dành cho các nước phát triển"],
+    "correct": 1
+  },
+  {
+    "id": 2,
+    "type": "hcm-independence",
+    "question": "Khát vọng lớn nhất của nhân dân Việt Nam theo Hồ Chí Minh là gì?",
+    "answers": ["Trở thành cường quốc quân sự", "Có nền kinh tế giàu mạnh", "Được sống trong độc lập, tự do và hạnh phúc", "Mở rộng lãnh thổ"],
+    "correct": 2
+  },
+  {
+    "id": 3,
+    "type": "hcm-independence",
+    "question": "Câu nói nào thể hiện rõ khát vọng độc lập của Hồ Chí Minh?",
+    "answers": ["“Không có gì quý hơn độc lập, tự do.”", "“Nước Việt Nam là một, dân tộc Việt Nam là một.”", "“Cái mà tôi cần nhất trên đời là đồng bào tôi được tự do, Tổ quốc tôi được độc lập.”", "“Dân ta phải biết sử ta.”"],
+    "correct": 2
+  },
+  {
+    "id": 4,
+    "type": "hcm-independence",
+    "question": "Năm 1919, Hồ Chí Minh gửi bản “Yêu sách của nhân dân An Nam” tới Hội nghị nào?",
+    "answers": ["Hội nghị Ianta", "Hội nghị Giơnevơ", "Hội nghị Vécxây", "Hội nghị Bandung"],
+    "correct": 2
+  },
+  {
+    "id": 5,
+    "type": "hcm-independence",
+    "question": "Mục đích của “Yêu sách của nhân dân An Nam” là gì?",
+    "answers": ["Đòi quyền tự do, dân chủ cho nhân dân Việt Nam", "Xin viện trợ quân sự", "Thành lập chính phủ mới", "Mở rộng quan hệ ngoại giao"],
+    "correct": 0
+  },
+  {
+    "id": 6,
+    "type": "hcm-independence",
+    "question": "Hồ Chí Minh đã dựa vào tinh thần của bản Tuyên ngôn nào để khẳng định quyền dân tộc? (Chọn nhiều đáp án)",
+    "answers": ["Tuyên ngôn Độc lập Mỹ 1776", "Tuyên ngôn Nhân quyền và Dân quyền Pháp 1791", "Tuyên ngôn của Đảng Cộng sản", "Hiến chương Liên Hợp Quốc"],
+    "correct": [0, 1]
+  },
+  {
+    "id": 7,
+    "type": "hcm-independence",
+    "question": "“Tất cả các dân tộc trên thế giới đều sinh ra bình đẳng…” khẳng định điều gì?",
+    "answers": ["Quyền xâm lược của các nước lớn", "Mọi dân tộc đều có quyền độc lập, tự do", "Chỉ các nước phương Tây mới có quyền tự do", "Quyền lực thuộc về thực dân"],
+    "correct": 1
+  },
+  {
+    "id": 8,
+    "type": "hcm-independence",
+    "question": "Trong “Chánh cương vắn tắt” năm 1930, Hồ Chí Minh xác định nhiệm vụ hàng đầu là gì?",
+    "answers": ["Phát triển công nghiệp", "Đánh đổ đế quốc và phong kiến", "Mở rộng thương mại", "Liên minh với các nước lớn"],
+    "correct": 1
+  },
+  {
+    "id": 9,
+    "type": "hcm-independence",
+    "question": "Câu nói “Không có gì quý hơn độc lập, tự do” ra đời năm nào?",
+    "answers": ["1945", "1954", "1965", "1975"],
+    "correct": 2
+  },
+  {
+    "id": 10,
+    "type": "hcm-independence",
+    "question": "Lời kêu gọi toàn quốc kháng chiến năm 1946 thể hiện điều gì?",
+    "answers": ["Mong muốn hòa bình bằng mọi giá", "Quyết tâm bảo vệ độc lập dân tộc", "Chính sách đối ngoại mềm dẻo", "Mục tiêu phát triển kinh tế"],
+    "correct": 1
+  },
+  {
+    "id": 11,
+    "type": "hcm-independence",
+    "question": "Theo Hồ Chí Minh, độc lập dân tộc phải gắn liền với điều gì?",
+    "answers": ["Chủ nghĩa tư bản", "Tự do và hạnh phúc của nhân dân", "Mở rộng lãnh thổ", "Phát triển quân sự"],
+    "correct": 1
+  },
+  {
+    "id": 12,
+    "type": "hcm-independence",
+    "question": "Hồ Chí Minh đánh giá cao học thuyết nào của Tôn Trung Sơn?",
+    "answers": ["Tam quyền phân lập", "Tam dân", "Chủ nghĩa dân tộc cực đoan", "Chủ nghĩa tự do"],
+    "correct": 1
+  },
+  {
+    "id": 13,
+    "type": "hcm-independence",
+    "question": "Theo Hồ Chí Minh, nếu nước độc lập mà dân không được hưởng hạnh phúc tự do thì:",
+    "answers": ["Độc lập chưa hoàn toàn", "Độc lập không có nghĩa lý gì", "Cần tăng cường quân đội", "Phải mở rộng ngoại giao"],
+    "correct": 1
+  },
+  {
+    "id": 14,
+    "type": "hcm-independence",
+    "question": "Trong “Chánh cương vắn tắt”, Hồ Chí Minh đề ra việc nào để chăm lo đời sống nhân dân?",
+    "answers": ["Chia ruộng đất cho dân cày nghèo", "Bỏ sưu thuế", "Thi hành ngày làm 8 giờ", "Tất cả các đáp án trên"],
+    "correct": 3
+  },
+  {
+    "id": 15,
+    "type": "hcm-independence",
+    "question": "Ngay sau khi giành độc lập, Hồ Chí Minh đề ra nhiệm vụ nào sau đây? (Chọn nhiều đáp án)",
+    "answers": ["Làm cho dân có ăn", "Làm cho dân có mặc", "Làm cho dân có chỗ ở", "Làm cho dân được học hành"],
+    "correct": [0, 1, 2, 3]
+  },
+  {
+    "id": 16,
+    "type": "hcm-independence",
+    "question": "Mong muốn lớn nhất của Hồ Chí Minh là gì?",
+    "answers": ["Việt Nam giàu mạnh quân sự", "Nhân dân được học hành, ấm no, tự do", "Việt Nam mở rộng lãnh thổ", "Trở thành nước phát triển nhanh nhất châu Á"],
+    "correct": 1
+  },
+  {
+    "id": 17,
+    "type": "hcm-independence",
+    "question": "Trong đại dịch COVID-19, phương châm “không để ai bị bỏ lại phía sau” thể hiện điều gì?",
+    "answers": ["Đặt nhân dân ở vị trí trung tâm", "Chính sách đối ngoại", "Tăng cường quân sự", "Phát triển công nghiệp"],
+    "correct": 0
+  },
+  {
+    "id": 18,
+    "type": "hcm-independence",
+    "question": "Theo Hồ Chí Minh, độc lập thật sự phải bảo đảm trên những lĩnh vực nào?",
+    "answers": ["Chính trị", "Kinh tế", "Quân sự và ngoại giao", "Tất cả các đáp án trên"],
+    "correct": 3
+  },
+  {
+    "id": 19,
+    "type": "hcm-independence",
+    "question": "Thực dân và đế quốc thường dùng chiêu bài gì để che giấu bản chất xâm lược?",
+    "answers": ["Dân chủ", "Độc lập tự do", "Bình đẳng giới", "Công nghệ hiện đại"],
+    "correct": 1
+  },
+  {
+    "id": 20,
+    "type": "hcm-independence",
+    "question": "Theo Hồ Chí Minh, một quốc gia thật sự độc lập phải có:",
+    "answers": ["Quyền tự quyết về ngoại giao", "Quân đội riêng", "Nền tài chính riêng", "Tất cả các đáp án trên"],
+    "correct": 3
+  },
+  {
+    "id": 21,
+    "type": "hcm-independence",
+    "question": "Sau Cách mạng Tháng Tám, Hồ Chí Minh sử dụng biện pháp nào để bảo vệ nền độc lập?",
+    "answers": ["Ngoại giao", "Đầu hàng thực dân", "Phụ thuộc nước ngoài", "Đóng cửa đất nước"],
+    "correct": 0
+  },
+  {
+    "id": 22,
+    "type": "hcm-independence",
+    "question": "“Ngoại giao cây tre” của Việt Nam hiện nay thể hiện điều gì?",
+    "answers": ["Độc lập, tự chủ, mềm dẻo nhưng kiên định", "Phụ thuộc vào nước lớn", "Chỉ hợp tác với châu Á", "Tham gia liên minh quân sự"],
+    "correct": 0
+  },
+  {
+    "id": 23,
+    "type": "hcm-independence",
+    "question": "Việt Nam hiện nay thực hiện chính sách đối ngoại nào?",
+    "answers": ["Chỉ hợp tác với các nước xã hội chủ nghĩa", "Là bạn, là đối tác tin cậy của tất cả các nước", "Không quan hệ với phương Tây", "Chỉ tập trung phát triển quân sự"],
+    "correct": 1
+  },
+  {
+    "id": 24,
+    "type": "hcm-independence",
+    "question": "Việt Nam không tham gia liên minh quân sự nhằm mục đích gì?",
+    "answers": ["Giữ vững độc lập, tự chủ", "Tăng cường chiến tranh", "Phụ thuộc nước ngoài", "Mở rộng lãnh thổ"],
+    "correct": 0
+  },
+  {
+    "id": 25,
+    "type": "hcm-independence",
+    "question": "Việc phát triển sản phẩm “Make in Vietnam” thể hiện điều gì?",
+    "answers": ["Độc lập về công nghệ và kinh tế", "Phụ thuộc nước ngoài", "Giảm phát triển khoa học", "Mở rộng chiến tranh công nghệ"],
+    "correct": 0
+  },
+  {
+    "id": 26,
+    "type": "hcm-independence",
+    "question": "Theo Hồ Chí Minh, độc lập dân tộc phải gắn liền với điều gì?",
+    "answers": ["Thống nhất và toàn vẹn lãnh thổ", "Phát triển công nghiệp nặng", "Tăng cường thương mại", "Liên minh quân sự"],
+    "correct": 0
+  },
+  {
+    "id": 27,
+    "type": "hcm-independence",
+    "question": "Thực dân Pháp chia Việt Nam thành ba kỳ nhằm mục đích gì?",
+    "answers": ["Phát triển kinh tế", "Chia rẽ dân tộc Việt Nam", "Tăng cường giáo dục", "Phát triển ngoại giao"],
+    "correct": 1
+  },
+  {
+    "id": 28,
+    "type": "hcm-independence",
+    "question": "“Nam Kỳ tự trị” là âm mưu của ai?",
+    "answers": ["Mỹ", "Nhật", "Pháp", "Trung Quốc"],
+    "correct": 2
+  },
+  {
+    "id": 29,
+    "type": "hcm-independence",
+    "question": "Câu nói “Sông có thể cạn, núi có thể mòn…” khẳng định điều gì?",
+    "answers": ["Việt Nam là quốc gia thống nhất", "Vai trò của kinh tế", "Tầm quan trọng của quân đội", "Chính sách đối ngoại"],
+    "correct": 0
+  },
+  {
+    "id": 30,
+    "type": "hcm-independence",
+    "question": "Sau Hiệp định Giơnevơ năm 1954, Hồ Chí Minh vẫn kiên trì mục tiêu nào?",
+    "answers": ["Công nghiệp hóa", "Thống nhất đất nước", "Mở rộng lãnh thổ", "Liên minh quân sự"],
+    "correct": 1
+  },
+  {
+    "id": 31,
+    "type": "hcm-independence",
+    "question": "Trong Di chúc, Hồ Chí Minh tin tưởng điều gì?",
+    "answers": ["Việt Nam sẽ trở thành cường quốc quân sự", "Tổ quốc nhất định sẽ thống nhất", "Việt Nam sẽ phát triển tư bản chủ nghĩa", "Việt Nam sẽ mở rộng lãnh thổ"],
+    "correct": 1
+  },
+  {
+    "id": 32,
+    "type": "hcm-independence",
+    "question": "Hiện nay, Việt Nam bảo vệ chủ quyền biển đảo bằng biện pháp nào?",
+    "answers": ["Hòa bình dựa trên luật pháp quốc tế", "Chiến tranh quân sự", "Nhờ nước ngoài bảo vệ", "Từ bỏ tranh chấp"],
+    "correct": 0
+  },
+  {
+    "id": 33,
+    "type": "hcm-independence",
+    "question": "UNCLOS 1982 là:",
+    "answers": ["Hiệp định thương mại", "Công ước Liên Hợp Quốc về Luật Biển", "Liên minh quân sự", "Tổ chức tài chính quốc tế"],
+    "correct": 1
+  },
+  {
+    "id": 34,
+    "type": "hcm-independence",
+    "question": "Lực lượng nào ngày đêm bảo vệ biển đảo của Tổ quốc?",
+    "answers": ["Hải quân và cảnh sát biển", "Doanh nghiệp tư nhân", "Học sinh sinh viên", "Các tổ chức quốc tế"],
+    "correct": 0
+  },
+  {
+    "id": 35,
+    "type": "hcm-independence",
+    "question": "Hoạt động tuyên truyền về Hoàng Sa - Trường Sa hiện nay nhằm mục đích gì?",
+    "answers": ["Nâng cao ý thức bảo vệ chủ quyền quốc gia", "Phát triển du lịch", "Tăng xuất khẩu", "Thu hút đầu tư nước ngoài"],
+    "correct": 0
+  }
+]

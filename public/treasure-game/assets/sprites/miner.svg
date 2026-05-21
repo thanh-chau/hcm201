@@ -1,0 +1,28 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ao" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#dbeafe"/>
+    </linearGradient>
+    <linearGradient id="khan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ef4444"/>
+      <stop offset="1" stop-color="#991b1b"/>
+    </linearGradient>
+  </defs>
+  <circle cx="64" cy="64" r="58" fill="#fff7ed"/>
+  <ellipse cx="64" cy="102" rx="35" ry="15" fill="#0f766e" opacity=".28"/>
+  <rect x="38" y="58" width="52" height="45" rx="17" fill="url(#ao)" stroke="#0f766e" stroke-width="4"/>
+  <path d="M43 62l21 18 21-18" fill="none" stroke="#0f766e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M46 72h36l-7 23H53z" fill="url(#khan)"/>
+  <path d="M58 82l6-13 6 13 14 1-11 8 4 13-13-8-13 8 4-13-11-8z" fill="#facc15"/>
+  <circle cx="64" cy="44" r="24" fill="#f8c58a"/>
+  <path d="M39 40c6-20 22-28 36-23 11 4 18 13 18 25-18-7-35-7-54-2z" fill="#2f1b12"/>
+  <path d="M40 42c13-8 34-8 51 0" fill="none" stroke="#4b2718" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="55" cy="45" r="3.6" fill="#422006"/>
+  <circle cx="73" cy="45" r="3.6" fill="#422006"/>
+  <path d="M54 58c7 6 14 6 21 0" fill="none" stroke="#7c2d12" stroke-width="5" stroke-linecap="round"/>
+  <path d="M34 72l-15 10" stroke="#7c2d12" stroke-width="8" stroke-linecap="round"/>
+  <path d="M94 72l15 10" stroke="#7c2d12" stroke-width="8" stroke-linecap="round"/>
+  <rect x="45" y="96" width="15" height="20" rx="6" fill="#1e293b"/>
+  <rect x="68" y="96" width="15" height="20" rx="6" fill="#1e293b"/>
+</svg>
