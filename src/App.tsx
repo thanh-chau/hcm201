@@ -1,4 +1,4 @@
-﻿import { useState, useRef, useEffect, useMemo, Suspense } from "react";
+import { useState, useRef, useEffect, useMemo, Suspense } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Toaster, toast } from "sonner";
 import {
@@ -48,6 +48,7 @@ import { getChatResponse } from "./lib/gemini";
 import { auth, googleProvider } from "./lib/firebase";
 import { signInWithPopup, signOut, onAuthStateChanged, User as FirebaseUser, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from "firebase/auth";
 import { Footer } from "./Footer"; // Sửa lại đường dẫn nếu bạn để ở thư mục khác, VD: "./components/Footer"
+import FlipBook from "./FlipBook";
 // ==========================================
 // R3F IMPORTS CHO LIBRARY 3D
 // ==========================================
@@ -98,86 +99,113 @@ const FEATURE_IMAGES = {
   overview: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80",
 };
 
-const CHAPTER3_TOPICS = [
+export const CHAPTER3_TOPICS = [
   {
     id: "quyen-thieng-lieng",
     letter: "a",
-    title: "Độc lập, tự do là quyền thiêng liêng",
+    title: "Độc lập, tự do là quyền thiêng liêng, bất khả xâm phạm",
     icon: <Flag className="w-7 h-7 text-[#0F766E] dark:text-[#A7F3D0]" />,
     quote: "Cái mà tôi cần nhất trên đời là đồng bào tôi được tự do, Tổ quốc tôi được độc lập.",
-    meaning: "Độc lập dân tộc là mục tiêu hàng đầu của cách mạng Việt Nam; mọi dân tộc đều có quyền sống, quyền sung sướng và quyền tự do.",
+    meaning: "Mọi dân tộc đều có quyền sống, quyền sung sướng và quyền tự do. Không quốc gia nào có quyền xâm lược hay áp bức dân tộc khác.",
     points: [
-      "Khát vọng độc lập, tự do bắt nguồn từ truyền thống yêu nước và lịch sử giữ nước của dân tộc Việt Nam.",
-      "Năm 1919, bản Yêu sách của nhân dân An Nam đặt nền cho tư tưởng về quyền bình đẳng, tự do và dân chủ.",
-      "Trong Chánh cương vắn tắt năm 1930, Hồ Chí Minh xác định mục tiêu: đánh đổ đế quốc, phong kiến và làm cho nước Nam hoàn toàn độc lập.",
-      "Tuyên ngôn Độc lập 1945, Lời kêu gọi toàn quốc kháng chiến 1946 và chân lý “Không có gì quý hơn độc lập, tự do” thể hiện quyết tâm bảo vệ độc lập."
+      "Khát vọng độc lập bắt nguồn từ truyền thống yêu nước và lịch sử chống ngoại xâm của dân tộc Việt Nam.",
+      "Năm 1919, bản Yêu sách của nhân dân An Nam gửi Hội nghị Vécxây đặt nền móng cho tư tưởng về quyền bình đẳng và tự do dân tộc.",
+      "Kế thừa Tuyên ngôn Độc lập Mỹ 1776 và Tuyên ngôn Nhân quyền & Dân quyền Pháp 1791, Người khẳng định mọi dân tộc sinh ra đều bình đẳng.",
+      "Chánh cương vắn tắt 1930 xác định mục tiêu: đánh đổ đế quốc, phong kiến và làm cho nước Nam hoàn toàn độc lập.",
+      "Lời kêu gọi toàn quốc kháng chiến 19/12/1946: 'Chúng ta thà hy sinh tất cả, chứ nhất định không chịu mất nước, nhất định không chịu làm nô lệ.'",
+      "Chân lý 1965: 'Không có gì quý hơn độc lập, tự do' trở thành động lực tinh thần cho cả dân tộc và các nước bị áp bức trên thế giới."
     ],
     apply: [
-      "Bảo vệ chủ quyền biển đảo, Hoàng Sa, Trường Sa bằng biện pháp hòa bình và cơ sở luật pháp quốc tế.",
-      "Công dân học tập tốt, tham gia nghĩa vụ quân sự, lan tỏa thông tin đúng về lịch sử và chủ quyền quốc gia."
+      "Nhà nước kiên quyết bảo vệ chủ quyền Hoàng Sa, Trường Sa dựa trên UNCLOS 1982 và luật pháp quốc tế.",
+      "Hiến pháp 2013 Điều 11 khẳng định Tổ quốc là thiêng liêng, bất khả xâm phạm; Điều 44 quy định công dân có nghĩa vụ trung thành với Tổ quốc.",
+      "Thế hệ trẻ: học tập tốt, tham gia nghĩa vụ quân sự, phản bác thông tin sai lệch về lịch sử và chủ quyền quốc gia trên mạng xã hội."
     ]
   },
   {
     id: "tu-do-hanh-phuc",
     letter: "b",
-    title: "Độc lập gắn với tự do, hạnh phúc của nhân dân",
+    title: "Độc lập dân tộc phải gắn liền với tự do, hạnh phúc của nhân dân",
     icon: <BookOpen className="w-7 h-7 text-[#0F766E] dark:text-[#A7F3D0]" />,
     quote: "Nước độc lập mà dân không hưởng hạnh phúc tự do, thì độc lập cũng chẳng có nghĩa lý gì.",
-    meaning: "Độc lập không chỉ là chủ quyền quốc gia, mà phải làm cho nhân dân có tự do, có cơm ăn áo mặc, có chỗ ở và được học hành.",
+    meaning: "Độc lập là điều kiện, không phải mục đích cuối cùng. Mục đích cuối cùng là đem lại tự do, ấm no và hạnh phúc thực sự cho mọi người dân.",
     points: [
-      "Hồ Chí Minh đánh giá cao học thuyết Tam dân: dân tộc độc lập, dân quyền tự do, dân sinh hạnh phúc.",
-      "Mục tiêu cách mạng trong Chánh cương vắn tắt không chỉ giành độc lập mà còn chăm lo ruộng đất, sưu thuế, ngày làm 8 giờ cho người lao động.",
-      "Sau Cách mạng Tháng Tám, Người đặt nhiệm vụ cấp thiết: dân có ăn, có mặc, có chỗ ở, có học hành.",
-      "Mong muốn tột bậc của Người là nước hoàn toàn độc lập, dân hoàn toàn tự do, ai cũng có cơm ăn áo mặc và được học hành."
+      "Hồ Chí Minh đánh giá cao học thuyết Tam dân của Tôn Trung Sơn: dân tộc độc lập, dân quyền tự do, dân sinh hạnh phúc.",
+      "Chánh cương vắn tắt 1930 không chỉ đặt mục tiêu giành độc lập mà còn: chia ruộng đất cho dân cày nghèo, bỏ sưu thuế, thực hiện ngày làm 8 giờ.",
+      "Sau Cách mạng Tháng Tám, Người đề ra 4 nhiệm vụ cấp thiết: làm cho dân có ăn, có mặc, có chỗ ở, được học hành.",
+      "Mong muốn tột bậc: 'Làm sao cho nước ta hoàn toàn độc lập, dân ta hoàn toàn tự do, đồng bào ai cũng có cơm ăn áo mặc, ai cũng được học hành.'"
     ],
     apply: [
-      "Các chính sách xóa đói giảm nghèo, phát triển giáo dục, y tế, bảo hiểm y tế và hỗ trợ vùng khó khăn.",
-      "Trong COVID-19, tinh thần không để ai bị bỏ lại phía sau thể hiện việc đặt tính mạng và hạnh phúc nhân dân ở trung tâm."
+      "Các chính sách xóa đói giảm nghèo, phát triển giáo dục, y tế, bảo hiểm y tế toàn dân và hỗ trợ học phí cho học sinh nghèo.",
+      "Hiến pháp 2013 Điều 3: Nhà nước bảo đảm và phát huy quyền làm chủ của nhân dân.",
+      "Trong COVID-19, phương châm 'không để ai bị bỏ lại phía sau' thể hiện rõ: điều trị miễn phí, tiêm vaccine diện rộng, hỗ trợ lương thực cho vùng phong tỏa."
     ]
   },
   {
     id: "doc-lap-that-su",
     letter: "c",
-    title: "Độc lập thật sự, hoàn toàn và triệt để",
+    title: "Độc lập dân tộc phải là nền độc lập thật sự, hoàn toàn và triệt để",
     icon: <Shield className="w-7 h-7 text-[#0F766E] dark:text-[#A7F3D0]" />,
-    quote: "Độc lập mà không có quyền tự quyết về ngoại giao, quân đội riêng, tài chính riêng thì độc lập đó chẳng có ý nghĩa gì.",
-    meaning: "Một quốc gia chỉ thật sự độc lập khi tự quyết được chính trị, kinh tế, quân sự, ngoại giao và không bị lệ thuộc vào nước ngoài.",
+    quote: "Độc lập mà không có quyền tự quyết về ngoại giao, không có quân đội riêng, không có nền tài chính riêng thì độc lập đó chẳng có ý nghĩa gì.",
+    meaning: "Một quốc gia chỉ thật sự độc lập khi tự chủ hoàn toàn trên tất cả các lĩnh vực: chính trị, kinh tế, quân sự, ngoại giao — không bị lệ thuộc hay chi phối bởi nước ngoài.",
     points: [
-      "Hồ Chí Minh phê phán kiểu độc lập giả hiệu do thực dân, đế quốc dựng lên để che giấu áp bức thuộc địa.",
-      "Độc lập phải toàn diện trên các lĩnh vực: chính trị, kinh tế, quân sự, tài chính, ngoại giao và văn hóa.",
-      "Sau Cách mạng Tháng Tám, Người cùng Chính phủ sử dụng nhiều biện pháp, đặc biệt là ngoại giao, để giữ vững nền độc lập mới giành được.",
-      "Tinh thần độc lập tự chủ là điều kiện để quốc gia có tiếng nói và vị thế bình đẳng trong quan hệ quốc tế."
+      "Nhiều thực dân, đế quốc dùng chiêu bài 'độc lập tự do' để che giấu bản chất xâm lược, lập chính phủ bù nhìn để tiếp tục kiểm soát và áp bức thuộc địa.",
+      "Độc lập thật sự phải bao gồm: tự chủ về chính trị, nền tài chính riêng, quân đội riêng và quyền tự quyết về đối ngoại.",
+      "Sau Cách mạng Tháng Tám, Người cùng Chính phủ dùng nhiều biện pháp — đặc biệt là ngoại giao — để bảo vệ nền độc lập mới giành được trước thù trong giặc ngoài.",
+      "Độc lập tự chủ là điều kiện để quốc gia có tiếng nói và vị thế bình đẳng trong quan hệ quốc tế."
     ],
     apply: [
-      "Đường lối đối ngoại độc lập, tự chủ, hòa bình, hữu nghị, đa phương hóa và đa dạng hóa quan hệ quốc tế.",
-      "Phát triển kinh tế tự chủ, khoa học công nghệ, công nghiệp quốc phòng, an ninh mạng và sản phẩm Make in Vietnam."
+      "Đường lối Ngoại giao Cây tre: độc lập, tự chủ, không chọn bên trong xung đột quốc tế, không tham gia liên minh quân sự để chống nước khác.",
+      "Chính sách đối ngoại: 'Việt Nam là bạn, là đối tác tin cậy của tất cả các nước' — đa phương hóa, đa dạng hóa quan hệ quốc tế.",
+      "Phát triển kinh tế tự chủ, công nghiệp quốc phòng, an ninh mạng và sản phẩm Make in Vietnam; chủ động nghiên cứu vaccine trong đại dịch COVID-19."
     ]
   },
   {
     id: "toan-ven-lanh-tho",
     letter: "d",
-    title: "Độc lập gắn với thống nhất và toàn vẹn lãnh thổ",
+    title: "Độc lập dân tộc gắn liền với thống nhất và toàn vẹn lãnh thổ",
     icon: <Landmark className="w-7 h-7 text-[#0F766E] dark:text-[#A7F3D0]" />,
-    quote: "Nước Việt Nam là một, dân tộc Việt Nam là một.",
-    meaning: "Độc lập dân tộc không thể tách rời thống nhất đất nước; mọi âm mưu chia cắt đều đi ngược chân lý lịch sử của dân tộc Việt Nam.",
+    quote: "Nước Việt Nam là một, dân tộc Việt Nam là một. Sông có thể cạn, núi có thể mòn, song chân lý đó không bao giờ thay đổi.",
+    meaning: "Độc lập dân tộc không thể tách rời thống nhất đất nước và toàn vẹn lãnh thổ. Mọi âm mưu chia cắt đều đi ngược chân lý lịch sử của dân tộc Việt Nam.",
     points: [
-      "Thực dân Pháp từng chia nước ta thành ba kỳ và dựng chiêu bài Nam Kỳ tự trị để chia rẽ dân tộc.",
-      "Trong Thư gửi đồng bào Nam Bộ, Hồ Chí Minh khẳng định đồng bào Nam Bộ là dân nước Việt Nam.",
-      "Sau Hiệp định Giơnevơ 1954, Người tiếp tục kiên trì mục tiêu thống nhất Tổ quốc.",
-      "Trong Di chúc, Người tin tưởng Tổ quốc nhất định thống nhất, đồng bào Nam Bắc nhất định sum họp một nhà."
+      "Thực dân Pháp chia Việt Nam thành ba kỳ với ba chế độ cai trị khác nhau, sau đó lập 'Nam Kỳ tự trị' nhằm chia rẽ và chia cắt đất nước.",
+      "Thư gửi đồng bào Nam Bộ (1946): 'Đồng bào Nam Bộ là dân nước Việt Nam. Sông có thể cạn, núi có thể mòn, song chân lý đó không bao giờ thay đổi.'",
+      "Sau Hiệp định Giơnevơ 1954, đất nước tạm thời bị chia cắt hai miền, nhưng Người tiếp tục kiên trì mục tiêu thống nhất với tuyên bố năm 1958: 'Nước Việt Nam là một, dân tộc Việt Nam là một.'",
+      "Trong Di chúc: 'Tổ quốc ta nhất định sẽ thống nhất. Đồng bào Nam, Bắc nhất định sẽ sum họp một nhà.'"
     ],
     apply: [
-      "Khẳng định và bảo vệ chủ quyền đối với Hoàng Sa, Trường Sa bằng biện pháp hòa bình.",
-      "Tăng cường giáo dục chủ quyền biển đảo trong trường học và trên không gian mạng."
+      "Nhà nước kiên quyết khẳng định chủ quyền đối với Hoàng Sa, Trường Sa bằng biện pháp hòa bình theo UNCLOS 1982.",
+      "Hải quân và cảnh sát biển ngày đêm bảo vệ vùng biển và lãnh thổ Tổ quốc.",
+      "Đẩy mạnh giáo dục chủ quyền biển đảo trong trường học và trên mạng xã hội để nâng cao ý thức thế hệ trẻ."
     ]
   }
 ];
 
-const CHAPTER3_TIMELINE = [
-  { year: "1919", title: "Yêu sách của nhân dân An Nam", text: "Đòi quyền bình đẳng pháp lý và các quyền tự do, dân chủ cho nhân dân Việt Nam." },
-  { year: "1930", title: "Chánh cương vắn tắt", text: "Xác định mục tiêu làm cho nước Nam được hoàn toàn độc lập." },
-  { year: "1945", title: "Tuyên ngôn Độc lập", text: "Khẳng định Việt Nam có quyền hưởng tự do, độc lập và sự thật đã thành một nước tự do, độc lập." },
-  { year: "1965", title: "Chân lý thời đại", text: "Không có gì quý hơn độc lập, tự do trở thành động lực tinh thần to lớn của dân tộc." }
+export const CHAPTER3_TIMELINE = [
+  {
+    year: "1919",
+    title: "Yêu sách của nhân dân An Nam",
+    text: "Gửi tới Hội nghị Vécxây, đòi quyền bình đẳng pháp lý và các quyền tự do, dân chủ — lần đầu tiên tư tưởng về quyền độc lập dân tộc được hình thành."
+  },
+  {
+    year: "1930",
+    title: "Chánh cương vắn tắt",
+    text: "Xác định mục tiêu cách mạng: đánh đổ đế quốc, phong kiến; làm cho nước Nam hoàn toàn độc lập; đồng thời chăm lo ruộng đất, thuế khóa và quyền lợi người lao động."
+  },
+  {
+    year: "1945",
+    title: "Tuyên ngôn Độc lập",
+    text: "Khẳng định Việt Nam có quyền hưởng tự do và độc lập. Toàn thể dân Việt Nam quyết đem tất cả tinh thần, lực lượng, tính mệnh và của cải để giữ vững quyền đó."
+  },
+  {
+    year: "1946",
+    title: "Lời kêu gọi toàn quốc kháng chiến",
+    text: "'Chúng ta thà hy sinh tất cả, chứ nhất định không chịu mất nước, nhất định không chịu làm nô lệ.' — Thể hiện ý chí bảo vệ nền độc lập thật sự, không chấp nhận độc lập hình thức."
+  },
+  {
+    year: "1965",
+    title: "Chân lý thời đại",
+    text: "'Không có gì quý hơn độc lập, tự do' trở thành nguồn động viên to lớn cho nhân dân Việt Nam và các dân tộc bị áp bức trên toàn thế giới."
+  }
 ];
 
 type TheoryPage = "overview" | "ideas" | "timeline" | "practice" | "game";
@@ -784,7 +812,7 @@ const InteractiveLibrary = () => {
 // MAIN APP COMPONENT (2D & Logic) - ĐÃ CẬP NHẬT LIGHT/DARK MODE
 // ==========================================
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'main' | 'library'>('main');
+  const [activeTab, setActiveTab] = useState<'main' | 'library' | 'book'>('main');
   const [activeTheoryPage, setActiveTheoryPage] = useState<TheoryPage>("overview");
   const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
   const [user, setUser] = useState<FirebaseUser | null>(null);
@@ -1100,6 +1128,12 @@ export default function App() {
               >
                 Học lý thuyết
               </button>
+              <button
+                onClick={() => setActiveTab('book')}
+                className={cn("rounded-lg px-4 py-2 text-xs font-bold uppercase transition-all", activeTab === 'book' ? "bg-white text-[#0F766E] shadow-sm dark:bg-black/60 dark:text-[#A7F3D0]" : "text-gray-600 hover:text-[#0F766E] dark:text-gray-300 dark:hover:text-[#A7F3D0]")}
+              >
+                Sách 3D
+              </button>
             </div>
 
             <div className="flex items-center gap-5 rounded-xl border border-transparent px-2">
@@ -1141,6 +1175,9 @@ export default function App() {
             </Button>
             <Button variant="outline" size="icon" onClick={() => setIsChatOpen(true)} className="h-10 w-10 rounded-xl border-[#0F766E]/35 text-[#0F766E] dark:border-[#A7F3D0]/40 dark:text-[#A7F3D0]">
               <MessageSquare className="h-4 w-4" />
+            </Button>
+            <Button variant="outline" size="icon" onClick={() => setActiveTab(activeTab === 'book' ? 'main' : 'book')} className="h-10 w-10 rounded-xl border-[#0F766E]/35 text-[#0F766E] dark:border-[#A7F3D0]/40 dark:text-[#A7F3D0]">
+              <BookOpen className="h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -1662,6 +1699,12 @@ export default function App() {
          <Footer />
         </>
         
+      ) : activeTab === 'book' ? (
+        <main className="fixed top-24 left-0 right-0 bottom-0 overflow-auto bg-[#EEF7F6] dark:bg-[#061317]">
+          <div className="container mx-auto px-4 py-8">
+            <FlipBook />
+          </div>
+        </main>
       ) : (
         <main className="fixed top-20 left-0 right-0 bottom-0 overflow-hidden bg-[#050505]">
           <InteractiveLibrary />

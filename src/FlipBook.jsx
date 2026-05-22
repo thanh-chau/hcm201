@@ -7,51 +7,78 @@ import React, {
 } from "react";
 import HTMLFlipBook from "react-pageflip";
 
-const PAGE_RATIO = 0.5625;
+const PAGE_RATIO = 1.414; // Portrait book ratio (A4)
 
-const DEFAULT_PAGES = [
-  { src: "/pages/cover_start.png", alt: "Bìa truyện", type: "cover" },
-  ...Array.from({ length: 24 }, (_, i) => ({
-    src: `/pages/${i + 1}.png`,
-    alt: `Trang ${i + 1}`,
-  })),
-  { src: "/pages/cover_end.png", alt: "Bìa sau", type: "cover" },
-];
+import { CHAPTER3_TOPICS, CHAPTER3_TIMELINE } from "./App";
 
-const DEFAULT_STORY_TEXTS = [
-  "Chương 5: Đại Đoàn Kết Toàn Dân Tộc. Chào mừng các bạn đến với câu chuyện về một xóm chợ nhỏ trong những ngày đại dịch COVID-19. Qua biến cố này, chúng ta sẽ thấy rõ sức mạnh vô địch của khối đại đoàn kết toàn dân tộc theo tư tưởng Hồ Chí Minh.",
-  "Buổi sáng ở xóm chợ nhỏ thanh bình. Những người tiểu thương, nông dân, công nhân cùng sinh hoạt và buôn bán. Hồ Chí Minh từng nói, đại đa số nhân dân là nền gốc của đại đoàn kết. Hình ảnh xóm chợ chính là một góc thu nhỏ của khối liên minh ấy.",
-  "Cô Lan – người bán thịt, luôn nở nụ cười thân thiện. Trong tư tưởng Bác, mỗi người dân lao động đều là một tế bào quan trọng của xã hội, không phân biệt nghề nghiệp hay tầng lớp.",
-  "Bà Tâm dắt bé Na đi chợ. Tình làng nghĩa xóm giản dị này chính là biểu hiện sinh động của truyền thống yêu nước, nhân nghĩa và tinh thần tương thân tương ái của dân tộc ta.",
-  "Mọi giao dịch diễn ra nhịp nhàng. Khối đại đoàn kết được xây dựng vững chắc khi các tầng lớp nhân dân cùng chung sống hòa thuận, đóng góp vào sự phát triển chung của đất nước.",
-  "Bữa cơm gia đình ấm áp. Mục tiêu của đại đoàn kết cuối cùng cũng là vì hạnh phúc của nhân dân, để ai cũng có cơm ăn, áo mặc, ai cũng được học hành như Bác hằng mong muốn.",
-  "Thế nhưng, đại dịch COVID-19 bất ngờ ập đến như một cơn bão. Tin tức khẩn cấp trên TV báo hiệu một cuộc chiến không tiếng súng, đòi hỏi toàn dân tộc phải đồng lòng đối mặt.",
-  "Ban đầu, sự hoang mang khiến người dân đổ xô đi tích trữ hàng hóa. Khi khối đoàn kết chưa được tổ chức chặt chẽ và đối diện với nỗi sợ, sự hoảng loạn là điều dễ hiểu.",
-  "Cô Lan lo âu giữa khung cảnh hỗn loạn. Những khó khăn này là phép thử lớn đối với sức chịu đựng và tinh thần gắn kết của cộng đồng.",
-  "Bảng giá tăng vọt ở một số nơi do thiếu thốn. Việc đặt lợi ích cá nhân lên trên lợi ích chung trong lúc nguy nan có thể làm rạn nứt khối đại đoàn kết nếu không được chấn chỉnh kịp thời.",
-  "Bà Tâm và bé Na lo lắng không mua đủ nhu yếu phẩm. Hồ Chí Minh luôn dặn: 'Phải chú ý giải quyết hết các vấn đề thiết thực của dân', không để ai bị bỏ lại phía sau.",
-  "Bóng lưng hai bà cháu buồn bã rời chợ. Nếu không có sự can thiệp của Mặt trận và Nhà nước, những người yếu thế sẽ chịu thiệt thòi nhất trong khủng hoảng.",
-  "Giữa lúc khó khăn nhất, bộ đội và xe chở hàng cứu trợ tiến vào. Quân đội nhân dân từ nhân dân mà ra, vì nhân dân mà chiến đấu, minh chứng cho sức mạnh đoàn kết quân dân.",
-  "Cán bộ dùng loa thông báo chính sách hỗ trợ. Nhà nước và Mặt trận Tổ quốc đã làm tốt công tác dân vận, thông tin minh bạch để quy tụ lòng dân, tạo niềm tin vững chắc.",
-  "Những bao gạo được trao tận tay. Đây không chỉ là vật chất, mà là sự sẻ chia đùm bọc, thể hiện nguyên tắc lấy lợi ích của nhân dân làm điểm quy tụ của khối đại đoàn kết.",
-  "Bà Tâm rơi nước mắt xúc động ôm túi gạo. Niềm tin của nhân dân vào Đảng và Nhà nước được củng cố. Yêu dân, tin dân và dựa vào dân là nguyên tắc tối cao.",
-  "Cô Lan an tâm khi có chính sách hỗ trợ. Khối đại đoàn kết đã phát huy tác dụng, biến nhu cầu tự phát thành hành động tự giác, chia sẻ khó khăn cùng cộng đồng.",
-  "Giá cả ổn định trở lại. Khi mọi người đồng lòng tuân thủ quy định và hiệp thương dân chủ, trật tự xã hội được thiết lập lại nhanh chóng.",
-  "Tại trạm y tế, các bác sĩ tận tình chăm sóc. Không chỉ có sức mạnh trong nước, Việt Nam còn nhận được sự hỗ trợ vaccine và thiết bị từ bạn bè quốc tế, minh chứng cho tình đoàn kết quốc tế.",
-  "Tấm thẻ bảo hiểm và sự chăm sóc y tế là minh chứng cho chế độ ưu việt. Việc kết hợp sức mạnh dân tộc và sức mạnh thời đại đã tạo nên lá chắn vững chắc chống lại đại dịch.",
-  "Xóm chợ dần hoạt động trở lại sau bão giông. Sức mạnh đại đoàn kết đã giúp chúng ta chiến thắng dịch bệnh, bảo vệ tính mạng và sức khỏe nhân dân.",
-  "Bé Na nhận viên kẹo, nụ cười hồn nhiên nở trên môi. Tương lai tươi sáng được bảo vệ nhờ truyền thống đoàn kết vững bền của dân tộc Việt Nam.",
-  "Người dân chia sẻ niềm vui. Tình đoàn kết không chỉ giúp vượt qua gian khó mà còn gắn bó mọi người chặt chẽ hơn, tạo động lực to lớn cho sự phát triển.",
-  "Từ trên cao nhìn xuống, xóm chợ bình yên đón bình minh. Sức mạnh tổng hợp từ khối đại đoàn kết toàn dân tộc chính là cội nguồn của mọi thắng lợi.",
-  "Khép lại câu chuyện, hình ảnh xóm chợ nhỏ trong đại dịch đã minh chứng sinh động cho chân lý vĩ đại của Bác Hồ: 'Đoàn kết, đoàn kết, đại đoàn kết. Thành công, thành công, đại thành công'.",
-  "Tư liệu kết thúc. Hãy luôn ghi nhớ và phát huy tinh thần đại đoàn kết toàn dân tộc và đoàn kết quốc tế trong công cuộc xây dựng và bảo vệ Tổ quốc hôm nay."
-];
+const getPages = () => {
+  const newPages = [];
+  
+  newPages.push(
+    <div className="page-content bg-[#0F766E] text-white flex flex-col justify-center items-center h-full p-8 text-center" style={{ width: '100%', height: '100%' }}>
+      <h1 className="text-3xl font-serif font-bold mb-4">Tư Tưởng Hồ Chí Minh</h1>
+      <h2 className="text-xl">Về Đại Đoàn Kết Toàn Dân Tộc</h2>
+    </div>
+  );
 
-const DEFAULT_AUDIO_FILES = [
-  "/audio/page0.mp3",
-  ...Array.from({ length: 24 }, (_, i) => `/audio/page${i + 1}.mp3`),
-  "/audio/page25.mp3",
-];
+  newPages.push(
+    <div className="page-content bg-[#F6F1EA] flex flex-col justify-center items-center h-full p-8 text-center" style={{ width: '100%', height: '100%' }}>
+      <div className="border-4 border-[#0F766E]/20 p-6 rounded-lg w-full h-full flex flex-col justify-center items-center">
+        <h2 className="text-2xl font-black text-[#0F766E] mb-4">Không có gì quý hơn độc lập, tự do</h2>
+        <p className="text-lg leading-relaxed text-gray-800">
+          Độc lập dân tộc là mục tiêu trước hết, nhưng phải là độc lập thật sự và gắn với tự do, hạnh phúc của nhân dân.
+        </p>
+      </div>
+    </div>
+  );
+
+  CHAPTER3_TOPICS.forEach((topic) => {
+    newPages.push(
+      <div className="page-content bg-white h-full p-8 overflow-y-auto custom-scrollbar" style={{ width: '100%', height: '100%' }}>
+        <p className="text-sm font-bold tracking-[0.2em] text-[#0F766E] mb-2 uppercase">Luận điểm {topic.letter}</p>
+        <h3 className="text-2xl font-serif font-bold text-gray-900 mb-6">{topic.title}</h3>
+        <blockquote className="border-l-4 border-[#0F766E] pl-4 italic text-lg mb-6 text-gray-700 font-serif">
+          “{topic.quote}”
+        </blockquote>
+        <p className="font-medium text-gray-800 mb-6 leading-relaxed">{topic.meaning}</p>
+        <div className="space-y-3">
+          {topic.points.map((pt, i) => (
+            <p key={i} className="text-sm leading-relaxed text-gray-600 relative pl-4">
+              <span className="absolute left-0 top-1.5 w-1.5 h-1.5 bg-[#0F766E] rounded-full"></span>
+              {pt}
+            </p>
+          ))}
+        </div>
+      </div>
+    );
+  });
+
+  newPages.push(
+    <div className="page-content bg-[#F9FAFB] h-full p-8 overflow-y-auto custom-scrollbar" style={{ width: '100%', height: '100%' }}>
+       <h3 className="text-2xl font-serif font-bold text-[#0F766E] mb-6">Dòng thời gian</h3>
+       <div className="space-y-6">
+         {CHAPTER3_TIMELINE.map((item, i) => (
+           <div key={i} className="border-l-2 border-[#0F766E] pl-4">
+             <div className="font-bold text-lg text-[#0F766E]">{item.year}</div>
+             <div className="font-serif font-bold text-gray-900 mb-1">{item.title}</div>
+             <p className="text-sm text-gray-600">{item.text}</p>
+           </div>
+         ))}
+       </div>
+    </div>
+  );
+
+  newPages.push(
+    <div className="page-content bg-[#0F766E] text-white flex flex-col justify-center items-center h-full p-8 text-center" style={{ width: '100%', height: '100%' }}>
+      <h2 className="text-xl italic font-serif leading-relaxed px-4">
+        "Đoàn kết, đoàn kết, đại đoàn kết.<br />
+        Thành công, thành công, đại thành công"
+      </h2>
+    </div>
+  );
+
+  return newPages;
+};
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -78,13 +105,13 @@ const FlipBook = React.forwardRef((props = {}, ref) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [bookSize, setBookSize] = useState({ width: 500, height: 281 });
 
-  const pages = useMemo(() => DEFAULT_PAGES, []);
-  const storyTexts = useMemo(() => DEFAULT_STORY_TEXTS, []);
+  const pages = useMemo(() => getPages(), []);
+  const storyTexts = useMemo(() => [], []);
   const audioFiles = useMemo(() => {
     if (Array.isArray(externalAudioFiles) && externalAudioFiles.length > 0) {
       return externalAudioFiles;
     }
-    return DEFAULT_AUDIO_FILES;
+    return [];
   }, [externalAudioFiles]);
 
   const activeAudioRef =
@@ -390,12 +417,12 @@ const FlipBook = React.forwardRef((props = {}, ref) => {
   useEffect(() => {
     const updateSize = () => {
       const parentWidth = containerRef.current?.clientWidth || window.innerWidth;
-      const stageWidth = Math.min(parentWidth - 80, 1100);
+      const stageWidth = Math.min(parentWidth - 100, 1000);
 
       let pageWidth = stageWidth / 2;
       let pageHeight = pageWidth * PAGE_RATIO;
 
-      const maxHeight = window.innerHeight * 0.6;
+      const maxHeight = window.innerHeight * 0.75; // Giảm xuống 75% để vừa vặn hơn trên laptop
       if (pageHeight > maxHeight) {
         pageHeight = maxHeight;
         pageWidth = pageHeight / PAGE_RATIO;
@@ -662,13 +689,13 @@ const FlipBook = React.forwardRef((props = {}, ref) => {
           showCover={true}
           maxShadowOpacity={0.5}
         >
-          {pages.map((page, index) => (
+          {pages.map((pageContent, index) => (
             <div
               key={index}
               className={`page ${index % 2 === 0 ? "page-right" : "page-left"}`}
             >
               <div className="page-inner">
-                <img src={page.src} alt={page.alt} className="page-image" />
+                {pageContent}
               </div>
             </div>
           ))}
@@ -679,21 +706,6 @@ const FlipBook = React.forwardRef((props = {}, ref) => {
         <button className="ui-btn" onClick={goPrev}>
           ← Trang trước
         </button>
-        <button className="ui-btn" onClick={() => void playSpreadOnce(currentPage)}>
-          Phát Audio
-        </button>
-        <button
-          className={`ui-btn ${isAutoPlay ? "active" : ""}`}
-          onClick={() => {
-            if (isAutoPlay) {
-              stopAutoPlay();
-            } else {
-              void startAutoPlay();
-            }
-          }}
-        >
-          {isAutoPlay ? "Dừng tự động" : "Tự động lật + Audio"}
-        </button>
         <button className="ui-btn" onClick={goNext}>
           Trang sau →
         </button>
@@ -703,11 +715,6 @@ const FlipBook = React.forwardRef((props = {}, ref) => {
         <button className="ui-btn" onClick={toggleFullscreen}>
           {isFullscreen ? "Thoát toàn màn hình" : "Toàn màn hình"}
         </button>
-      </div>
-
-      <div className="story-card">
-        <div className="story-card-label">Nội dung từng trang</div>
-        <div>{getStoryTextForCurrentView()}</div>
       </div>
     </div>
   );
